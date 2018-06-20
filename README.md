@@ -1,0 +1,2 @@
+# prosto-bank
+Example UI
