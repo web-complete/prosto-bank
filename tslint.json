@@ -1,0 +1,12 @@
+{
+  "extends": "tslint-config-airbnb",
+  "rules": {
+    "radix": false,
+    "semicolon": [true, "never"],
+    "no-underscore-dangle": false,
+    "import-name": false,
+    "variable-name": false,
+    "max-line-length": [true, 120],
+    "ter-arrow-parens": [true, "as-needed"]
+  }
+}
