@@ -24,8 +24,8 @@ const styles = (theme: ITheme) => ({
   },
   link: {
     display: 'block',
-    padding: '18px 20px 18px 30px',
-    fontSize: '16px',
+    padding: '12px 20px 12px 30px',
+    fontSize: '13px',
     textDecoration: 'none',
     color: '#fff',
     transition: 'all 0.2s ease',

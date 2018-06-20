@@ -5,7 +5,8 @@ import { ITheme } from '../../../config/theme'
 import { Box } from '../../../shared/ui/Flex'
 import Logo from '../../../shared/ui/Logo'
 import NavItem from './Side/NavItem'
-import nav from '../../../config/navigation' // todo move to container
+// import nav from '../../../config/navigation' // todo move to container
+import nav from 'config/navigation' // todo move to container
 
 export interface Props {
 }
@@ -36,7 +37,7 @@ const styles = (theme: ITheme) => ({
   logo: {
     display: 'block',
     margin: '40px auto',
-    width: '170px',
+    width: '150px',
     maxWidth: '90%',
   },
 })

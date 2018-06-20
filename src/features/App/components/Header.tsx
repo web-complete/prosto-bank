@@ -1,6 +1,7 @@
 import * as React from 'react'
 import injectSheet, { WithStyles } from 'react-jss'
 import ExitToAppIcon from 'react-icons/lib/md/exit-to-app'
+import NotificationIcon from 'react-icons/lib/md/notifications-none'
 
 import { ITheme } from '../../../config/theme'
 import { Flex } from '../../../shared/ui/Flex'
@@ -15,9 +16,14 @@ class Header extends React.Component<StyledProps> {
     const { classes } = this.props
 
     return (
-      <Flex className={classes.root} dev>
-        header 123
-        <ExitToAppIcon />
+      <Flex className={classes.root} justifyEnd>
+        <button className={classes.btn}>
+          <NotificationIcon className={classes.btnIcon} />
+        </button>
+        <span className={classes.name}>ООО «ВЕБ КОМПЛИТ»</span>
+        <button className={classes.btn}>
+          <ExitToAppIcon className={classes.btnIcon} />
+        </button>
       </Flex>
     )
   }
@@ -25,6 +31,19 @@ class Header extends React.Component<StyledProps> {
 
 const styles = (theme: ITheme) => ({
   root: {
+    height: '60px',
+    padding: '0 20px',
+  },
+  name: {
+    fontWeight: '400',
+    margin: '0 20px',
+  },
+  btn: {
+    cursor: 'pointer',
+    border: 'none',
+  },
+  btnIcon: {
+    fontSize: '25px',
   },
 })
 
