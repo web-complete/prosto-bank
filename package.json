@@ -10,28 +10,36 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-icons": "^2.2.7",
-    "react-jss": "^8.5.1",
     "react-move": "^2.7.0",
     "react-redux": "^5.0.7",
     "react-scripts-ts": "2.16.0",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "styled-components": "^3.3.3"
   },
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
     "@types/d3-ease": "^1.0.7",
     "@types/jest": "^23.1.1",
-    "@types/jss": "^9.5.3",
     "@types/node": "^10.3.4",
+    "@types/reach__router": "^1.0.0",
     "@types/react": "^16.4.1",
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^6.0.2",
     "tslint": "^5.10.0",
     "tslint-config-airbnb": "^5.9.2",
-    "typescript": "^2.9.2"
+    "typescript": "^2.9.2",
+    "@storybook/react": "^3.4.7",
+    "@storybook/addon-actions": "^3.4.7",
+    "@storybook/addon-links": "^3.4.7",
+    "@storybook/addons": "^3.4.7",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0"
   }
 }
