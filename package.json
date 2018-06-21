@@ -25,6 +25,12 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.4.7",
+    "@storybook/addon-backgrounds": "^3.4.8",
+    "@storybook/addon-links": "^3.4.7",
+    "@storybook/addon-notes": "^3.4.8",
+    "@storybook/addons": "^3.4.8",
+    "@storybook/react": "^3.4.7",
     "@types/d3-ease": "^1.0.7",
     "@types/jest": "^23.1.1",
     "@types/node": "^10.3.4",
@@ -32,14 +38,10 @@
     "@types/react": "^16.4.1",
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^6.0.2",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
     "tslint": "^5.10.0",
     "tslint-config-airbnb": "^5.9.2",
-    "typescript": "^2.9.2",
-    "@storybook/react": "^3.4.7",
-    "@storybook/addon-actions": "^3.4.7",
-    "@storybook/addon-links": "^3.4.7",
-    "@storybook/addons": "^3.4.7",
-    "babel-core": "^6.26.3",
-    "babel-runtime": "^6.26.0"
+    "typescript": "^2.9.2"
   }
 }

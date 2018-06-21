@@ -28,8 +28,11 @@ const StyledRoot = styled.li`
     color: #fff;
     transition: all 0.2s ease;
   }
-  & > .nav-item:hover, .nav-item.active {
+  & > .nav-item:hover {
     background: ${props => props.theme.colorPrimaryHover};
+  }
+  & > .nav-item.active {
+    background: ${props => props.theme.colorPrimaryActive};
   }
 `
 
