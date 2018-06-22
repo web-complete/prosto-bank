@@ -9,13 +9,19 @@ interface Props {
   hideIcon?: boolean,
   colorThemePrimary?: keyof ITheme,
   colorThemeSecondary?: keyof ITheme,
+  className?: string,
+  style?: React.CSSProperties,
 }
 
 const Price: React.StatelessComponent<Props> = props => {
   const valueParts = props.value.toLocaleString().split(',')
 
   return (
-    <StyledRoot size={props.size} weight={props.weight}>
+    <StyledRoot size={props.size}
+                weight={props.weight}
+                className={props.className}
+                style={props.style}
+    >
       <StyledValue colorTheme={props.colorThemePrimary}>{valueParts[0]}</StyledValue>
       {valueParts[1] && <StyledValue colorTheme={props.colorThemeSecondary}>,{valueParts[1]}</StyledValue>}
       {!props.hideIcon && <StyledIcon size={props.size} colorTheme={props.colorThemeSecondary}><RubIcon/></StyledIcon>}
@@ -23,6 +29,7 @@ const Price: React.StatelessComponent<Props> = props => {
   )
 }
 const StyledRoot = styled.span<any>`
+  display: inline-block;
   vertical-align: bottom;
   line-height: 1;
   font-size: ${props => props.size || 14}px;

@@ -8,20 +8,28 @@ interface Props {
   colorTheme?: keyof ITheme,
   block?: boolean,
   paragraph?: boolean,
+  className?: string,
+  style?: React.CSSProperties,
 }
 
 const Text: React.StatelessComponent<Props> = props => props.paragraph
   ? <StyledParagraph size={props.size}
                      weight={props.weight}
                      color={props.color}
-                     colorTheme={props.colorTheme}>
+                     colorTheme={props.colorTheme}
+                     className={props.className}
+                     style={props.style}
+  >
       {props.children}
     </StyledParagraph>
   : <StyledText size={props.size}
                 weight={props.weight}
                 color={props.color}
                 colorTheme={props.colorTheme}
-                block={props.block}>
+                block={props.block}
+                className={props.className}
+                style={props.style}
+  >
       {props.children}
     </StyledText>
 
