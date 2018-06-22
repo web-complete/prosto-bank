@@ -19,9 +19,7 @@ const PageMainHead: React.StatelessComponent<Props> = props => (
   </StyledRoot>
 )
 
-const StyledRoot = styled.div`
-  margin-bottom: 25px;
-`
+const StyledRoot = styled.div``
 
 const StyledText = styled.div`
   font-weight: 400;

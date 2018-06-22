@@ -12,7 +12,7 @@ module.exports = (baseConfig, env, defaultConfig) => {
   });
   defaultConfig.plugins.push(new TsconfigPathsPlugin({ configFile: path.resolve(__dirname, '../tsconfig.json') }))
   defaultConfig.resolve.extensions.push(".ts", ".tsx");
-  defaultConfig.resolve.modules.push('src');
+  defaultConfig.resolve.modules.push('../src');
 
   return defaultConfig;
 };
