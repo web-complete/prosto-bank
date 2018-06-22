@@ -3,3 +3,4 @@ syntax: glob
 tmp/
 .idea
 node_modules
+yarn-error.log
