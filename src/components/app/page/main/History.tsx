@@ -3,6 +3,7 @@ import styled from 'config/theme'
 import Heading2 from 'components/shared/ui/Heading2'
 import Button from 'components/shared/ui/Button'
 import { List, ListItem, ListTitle } from 'components/shared/ui/List'
+import PageMainHistoryRecord from './history/Record'
 
 interface Props {
   style?: React.CSSProperties
@@ -14,9 +15,15 @@ const PageMainHistory: React.StatelessComponent<Props> = props => (
     <StyledListWrapper>
       <StyledListContent>
         <List title={'19 апреля'}>
-          <ListItem>1</ListItem>
-          <ListItem>2</ListItem>
-          <ListItem>3</ListItem>
+          <ListItem>
+            <PageMainHistoryRecord type={'in'} text={'Income 1'} value={10000} />
+          </ListItem>
+          <ListItem>
+            <PageMainHistoryRecord type={'in'} text={'Income 1'} value={43500} />
+          </ListItem>
+          <ListItem>
+            <PageMainHistoryRecord type={'out'} text={'Outgoing 1'} value={56300} />
+          </ListItem>
         </List>
       </StyledListContent>
       <StyledListFilter>

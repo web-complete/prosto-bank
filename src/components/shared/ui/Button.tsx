@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled from 'config/theme'
 
 interface Props {
+  onClick?: Function,
   fontSize?: number,
   disabled?: boolean,
   outlined?: boolean,
@@ -14,6 +15,7 @@ interface Props {
 
 const Button: React.StatelessComponent<Props> = props => (
   <StyledButton
+    onClick={props.onClick}
     outlined={props.outlined}
     disabled={props.disabled}
     rounded={props.rounded}
