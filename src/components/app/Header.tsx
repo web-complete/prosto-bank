@@ -1,6 +1,6 @@
 import * as React from 'react'
-import ExitToAppIcon from 'react-icons/lib/md/exit-to-app'
-import NotificationIcon from 'react-icons/lib/md/notifications-none'
+import { ExitToApp as ExitIcon } from 'styled-icons/material/ExitToApp'
+import { NotificationsNone as NotificationIcon } from 'styled-icons/material/NotificationsNone'
 
 import styled from 'config/theme'
 
@@ -12,11 +12,11 @@ class Header extends React.Component<Props> {
     return (
       <StyledRoot>
         <StyledButton>
-          <StyledNotificationIcon />
+          <NotificationIcon size={25} />
         </StyledButton>
         <StyledName>ООО «ВЕБ КОМПЛИТ»</StyledName>
         <StyledButton>
-          <StyledExitIcon />
+          <ExitIcon size={25} />
         </StyledButton>
       </StyledRoot>
     )
@@ -39,14 +39,6 @@ const StyledName = styled.span`
 const StyledButton = styled.button`
   cursor: pointer;
   border: none;
-`
-
-const StyledNotificationIcon = styled(NotificationIcon)`
-  font-size: 25px;
-`
-
-const StyledExitIcon = styled(ExitToAppIcon)`
-  font-size: 25px;
 `
 
 export default Header

@@ -1,12 +1,14 @@
 import * as styledComponents from 'styled-components'
 
+type Themed = styledComponents.ThemedStyledComponentsModule<ITheme>
+
 const {
   default: styled,
   css,
   injectGlobal,
   keyframes,
   ThemeProvider,
-} = styledComponents as styledComponents.ThemedStyledComponentsModule<ITheme>
+} = styledComponents as Themed
 
 export interface ITheme {
   colorText: string,

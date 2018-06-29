@@ -1,8 +1,8 @@
 import * as React from 'react'
 import Price from '../../../../shared/ui/Price'
 import styled from 'styled-components'
-import IconIn from 'react-icons/lib/fa/arrow-circle-o-down'
-import IconOut from 'react-icons/lib/fa/arrow-circle-o-up'
+import { ArrowAltCircleDown } from 'styled-icons/fa-regular/ArrowAltCircleDown'
+import { ArrowAltCircleUp } from 'styled-icons/fa-regular/ArrowAltCircleUp'
 
 interface Props {
   type: 'in' | 'out',
@@ -35,20 +35,19 @@ const StyledIconCell = styled.div`
   height: 40px;
   margin-right: 30px;
   flex: 0 0 auto;
-  border-radius: 50%;
-  background: ${props => props.theme.colorGray};
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
 `
 
-const StyledIconIn = styled(IconIn)`
-  font-size: 40px;
+const StyledIconIn = styled(ArrowAltCircleDown)`
+  height: 40px;
+  color: ${props => props.theme.colorGray};
 `
 
-const StyledIconOut = styled(IconOut)`
-  font-size: 40px;
+const StyledIconOut = styled(ArrowAltCircleUp)`
+  height: 40px;
+  color: ${props => props.theme.colorGray};
 `
 
 const StyledTextCell = styled.div`
