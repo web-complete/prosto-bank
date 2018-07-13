@@ -73,7 +73,7 @@ const StyledList = styled.div`
 
 const StyledItem = styled.a.attrs({ href: 'javascript://' })`
   text-decoration: none;
-  margin: 0 20px;
+  margin: 0 40px 0 0;
   padding: 10px 0;
   font-size: 16px;
   font-weight: 400;
@@ -96,7 +96,7 @@ const StyledItem = styled.a.attrs({ href: 'javascript://' })`
 `
 
 const StyledContent = styled.div`
-  padding: 20px 20px;
+  padding: 20px 0;
 `
 
 export default Tabs

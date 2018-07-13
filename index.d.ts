@@ -6,7 +6,10 @@ declare interface INavItem {
   default?: boolean,
 }
 
-declare module 'react-icons/*' {
-  const any: any
-  export default any
+declare interface IAccountItem {
+  transactionId: string,
+  type: 'in' | 'out',
+  description: string,
+  timestamp: number,
+  value: number,
 }

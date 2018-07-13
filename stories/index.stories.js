@@ -15,6 +15,7 @@ import Button from '../src/components/shared/ui/Button'
 import Price from '../src/components/shared/ui/Price'
 import { Tabs, Tab } from '../src/components/shared/ui/Tabs'
 import { List, ListItem } from '../src/components/shared/ui/List'
+import Input from '../src/components/shared/ui/Input'
 import NotificationIcon from 'react-icons/lib/md/notifications-none'
 
 storiesOf('Logo', module)
@@ -94,6 +95,12 @@ storiesOf('Lists', module)
     </List>
   )))
   .add('table', withNotes(``)(() => (<div>Todo</div>)))
+
+storiesOf('Forms', module)
+  .addDecorator(story => (<WithThemeProvider>{story()}</WithThemeProvider>))
+  .add('input', withNotes(``)(() => (
+    <Input label={'Текстовое поле'}/>
+  )))
 
 storiesOf('Other', module)
   .addDecorator(story => (<WithThemeProvider>{story()}</WithThemeProvider>))
