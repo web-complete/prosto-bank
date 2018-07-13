@@ -96,11 +96,28 @@ storiesOf('Lists', module)
   )))
   .add('table', withNotes(``)(() => (<div>Todo</div>)))
 
+class InputWrapper1 extends React.Component {
+  state = { val: '' }
+  render = () => <Input label={'Текстовое поле'}
+                        value={this.state.val}
+                        onInput={v => { this.setState({ val: v }); action('onInput')(v) }}
+                        onChange={action('onChange')}
+                        onFocus={action('onFocus')}
+                        onBlur={action('onBlur')}
+  />
+}
+
 storiesOf('Forms', module)
   .addDecorator(story => (<WithThemeProvider>{story()}</WithThemeProvider>))
-  .add('input', withNotes(``)(() => (
-    <Input label={'Текстовое поле'}/>
-  )))
+  .add('input', withNotes(``)(() => (<InputWrapper1/>)))
+  .add('input disabled', withNotes(``)(() => (<Input label={'Текстовое поле'}
+                                                     value={'disabled value'}
+                                                     disabled={true}
+                                                     onInput={action('onInput')}
+                                                     onChange={action('onChange')}
+                                                     onFocus={action('onFocus')}
+                                                     onBlur={action('onBlur')}
+  />)))
 
 storiesOf('Other', module)
   .addDecorator(story => (<WithThemeProvider>{story()}</WithThemeProvider>))
