@@ -13,3 +13,8 @@ declare interface IAccountItem {
   timestamp: number,
   value: number,
 }
+
+declare module 'react-imask' {
+  export const IMaskMixin: any
+  export const IMaskInput: any
+}

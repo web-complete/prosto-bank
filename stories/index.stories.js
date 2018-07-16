@@ -16,6 +16,10 @@ import Price from '../src/components/shared/ui/Price'
 import { Tabs, Tab } from '../src/components/shared/ui/Tabs'
 import { List, ListItem } from '../src/components/shared/ui/List'
 import Input from '../src/components/shared/ui/Input'
+import InputWrapper1 from './components/InputWrapper1'
+import InputWrapper2 from './components/InputWrapper2'
+import SelectWrapper1 from './components/SelectWrapper1'
+import DateWrapper1 from './components/DateWrapper1'
 import NotificationIcon from 'react-icons/lib/md/notifications-none'
 
 storiesOf('Logo', module)
@@ -96,17 +100,6 @@ storiesOf('Lists', module)
   )))
   .add('table', withNotes(``)(() => (<div>Todo</div>)))
 
-class InputWrapper1 extends React.Component {
-  state = { val: '' }
-  render = () => <Input label={'Текстовое поле'}
-                        value={this.state.val}
-                        onInput={v => { this.setState({ val: v }); action('onInput')(v) }}
-                        onChange={action('onChange')}
-                        onFocus={action('onFocus')}
-                        onBlur={action('onBlur')}
-  />
-}
-
 storiesOf('Forms', module)
   .addDecorator(story => (<WithThemeProvider>{story()}</WithThemeProvider>))
   .add('input', withNotes(``)(() => (<InputWrapper1/>)))
@@ -118,6 +111,30 @@ storiesOf('Forms', module)
                                                      onFocus={action('onFocus')}
                                                      onBlur={action('onBlur')}
   />)))
+  .add('input 50%', withNotes(``)(() => (
+    <div>
+      <Input label={'Текстовое поле 50%'}
+             value={'some value'}
+             onInput={action('onInput')}
+             onChange={action('onChange')}
+             onFocus={action('onFocus')}
+             onBlur={action('onBlur')}
+             width={'50%'}
+      />
+      <Input label={'Текстовое поле 50%'}
+             value={'some value'}
+             onInput={action('onInput')}
+             onChange={action('onChange')}
+             onFocus={action('onFocus')}
+             onBlur={action('onBlur')}
+             width={'50%'}
+      />
+    </div>
+  )))
+  .add('input mask', withNotes(``)(() => (<InputWrapper2/>)))
+  .add('select', withNotes(``)(() => (<SelectWrapper1/>)))
+  .add('select disabled', withNotes(``)(() => (<SelectWrapper1/>)))
+  .add('date', withNotes(``)(() => (<DateWrapper1/>)))
 
 storiesOf('Other', module)
   .addDecorator(story => (<WithThemeProvider>{story()}</WithThemeProvider>))
