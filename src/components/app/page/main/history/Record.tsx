@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { If } from 'classes/Helper'
 import Price from 'components/shared/ui/Price'
 import S from './Record.styled'
 
@@ -11,7 +12,7 @@ interface Props {
 const PageMainHistoryRecord: React.StatelessComponent<Props> = ({ type, text, value }) => (
   <S.Root>
     <S.IconCell>
-      {type === 'in' ? <S.IconIn/> : <S.IconOut/>}
+      {If(type === 'in', <S.IconIn/>, <S.IconOut/>)}
     </S.IconCell>
     <S.TextCell>
       {text}
