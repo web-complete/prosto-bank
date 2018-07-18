@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link } from '@reach/router'
-import styled from 'config/theme'
+import S from './Item.styled'
 
 export interface Props {
   item: INavItem,
@@ -11,29 +11,11 @@ const isActive = ({ isPartiallyCurrent , className }: any) => isPartiallyCurrent
   : { className: 'nav-item' }
 
 const SideItem: React.StatelessComponent<Props> = ({ item }) => (
-  <StyledRoot>
+  <S.Root>
     <Link to={item.path} getProps={isActive}>
       {item.title}
     </Link>
-  </StyledRoot>
+  </S.Root>
 )
-
-const StyledRoot = styled.li`
-  display: block;
-  & > .nav-item {
-    display: block;
-    text-decoration: none;
-    padding: 12px 20px 12px 30px;
-    font-size: 13px;
-    color: #fff;
-    transition: all 0.2s ease;
-  }
-  & > .nav-item:hover {
-    background: ${props => props.theme.colorPrimaryHover};
-  }
-  & > .nav-item.active {
-    background: ${props => props.theme.colorPrimaryActive};
-  }
-`
 
 export default SideItem

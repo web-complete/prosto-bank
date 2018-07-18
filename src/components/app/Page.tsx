@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { Router } from '@reach/router'
-import styled from 'config/theme'
 import nav from 'config/navigation'
+import S from './Page.styled'
 
 interface Props {
 }
 
 const Page: React.StatelessComponent<Props> = props => (
-  <StyledRoot>
+  <S.Root>
     <Router>
       {nav.map((route, k) => (
         React.createElement(route.component, {
@@ -17,11 +17,7 @@ const Page: React.StatelessComponent<Props> = props => (
         })
       ))}
     </Router>
-  </StyledRoot>
+  </S.Root>
 )
-
-const StyledRoot = styled.div`
-  padding: 30px 50px;
-`
 
 export default Page

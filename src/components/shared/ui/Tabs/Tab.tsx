@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled from 'config/theme'
+import S from './Tab.styled'
 
 export interface Props {
   code: string,
@@ -8,13 +8,9 @@ export interface Props {
 }
 
 const Tab: React.StatelessComponent<Props> = ({ active, children }) => (
-  <StyledRoot className={active ? 'active' : ''}>{children}</StyledRoot>
+  <S.Root className={active ? 'active' : ''}>
+    {children}
+  </S.Root>
 )
 
-const StyledRoot = styled.div`
-  display: none;
-  &.active {
-    display: block;
-  }
-`
 export default Tab

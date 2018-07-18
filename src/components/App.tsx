@@ -3,36 +3,28 @@ import { Provider } from 'react-redux'
 import 'normalize.css/normalize.css'
 
 import 'assets/css/global.css'
-import styled, { ThemeProvider, theme } from 'config/theme'
+import { ThemeProvider, theme } from 'config/theme'
 import nav from 'config/navigation'
 import Header from './app/Header'
+import Footer from './app/Footer'
 import Side from './app/Side'
 import Page from './app/Page'
 import store from 'store'
+import S from './App.styled'
 
 export default () => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <StyledLayout>
+        <S.Layout>
           <Side nav={nav}/>
-          <StyledMain>
+          <S.Main>
             <Header/>
             <Page/>
-          </StyledMain>
-        </StyledLayout>
+            <Footer/>
+          </S.Main>
+        </S.Layout>
       </ThemeProvider>
     </Provider>
   )
 }
-
-const StyledLayout = styled.div`
-  display: flex;
-  align-items: flex-start;
-  min-height: 100vh;
-`
-
-const StyledMain = styled.div`
-  width: 100%;
-  flex: 0 1 auto;
-`

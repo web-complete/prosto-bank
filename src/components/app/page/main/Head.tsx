@@ -1,13 +1,13 @@
 import * as React from 'react'
 import Price from 'components/shared/ui/Price'
-import styled from 'config/theme'
+import S from './Head.styled'
 
 interface Props {
 }
 
 const PageMainHead: React.StatelessComponent<Props> = props => (
-  <StyledRoot>
-    <StyledText style={{ marginBottom: '15px' }}>Всего доступно</StyledText>
+  <S.Root>
+    <S.Text style={{ marginBottom: '15px' }}>Всего доступно</S.Text>
     <Price value={667013.84}
            weight={600}
            size={38}
@@ -15,16 +15,8 @@ const PageMainHead: React.StatelessComponent<Props> = props => (
            colorThemeSecondary={'colorGray'}
            style={{ marginBottom: '15px' }}
     />
-    <StyledText>Рублевый счет **0805</StyledText>
-  </StyledRoot>
+    <S.Text>Рублевый счет **0805</S.Text>
+  </S.Root>
 )
-
-const StyledRoot = styled.div``
-
-const StyledText = styled.div`
-  font-weight: 400;
-  font-size: 16px;
-  color: ${props => props.theme.colorGray};
-`
 
 export default PageMainHead

@@ -1,8 +1,6 @@
 import * as React from 'react'
-
-import styled from 'config/theme'
-import Logo from 'components/shared/ui/Logo'
 import SideItem from './side/Item'
+import S from './Side.styled'
 
 export interface Props {
   nav: INavItem[]
@@ -11,29 +9,14 @@ export interface Props {
 class Side extends React.Component<Props> {
   render () {
     return (
-      <StyledRoot>
-        <StyledLogo />
+      <S.Root>
+        <S.Logo />
         <ul>
           {this.props.nav.map(item => (<SideItem item={item} key={item.code}/>))}
         </ul>
-      </StyledRoot>
+      </S.Root>
     )
   }
 }
-
-const StyledRoot = styled.div`
-  flex: 0 0 auto;
-  color: #fff;
-  background: ${props => props.theme.colorPrimary};
-  width: 280px;
-  align-self: stretch;
-`
-
-const StyledLogo = styled(Logo)`
-  display: block;
-  margin: 40px auto;
-  width: 150px;
-  max-width: 90%;
-`
 
 export default Side

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { RubleSign } from 'styled-icons/fa-solid/RubleSign'
-import styled, { ITheme } from 'config/theme'
+import { ITheme } from 'config/theme'
+import S from './Price.styled'
 
 interface Props {
   value: number,
@@ -17,36 +17,18 @@ const Price: React.StatelessComponent<Props> = props => {
   const valueParts = props.value.toLocaleString().split(',')
 
   return (
-    <StyledRoot size={props.size}
+    <S.Root size={props.size}
                 weight={props.weight}
                 className={props.className}
                 style={props.style}
     >
-      <StyledValue colorTheme={props.colorThemePrimary}>{valueParts[0]}</StyledValue>
-      {valueParts[1] && <StyledValue colorTheme={props.colorThemeSecondary}>,{valueParts[1]}</StyledValue>}
+      <S.Value colorTheme={props.colorThemePrimary}>{valueParts[0]}</S.Value>
+      {valueParts[1] && <S.Value colorTheme={props.colorThemeSecondary}>,{valueParts[1]}</S.Value>}
       {!props.hideIcon && (
-        <StyledIcon size={props.size} colorTheme={props.colorThemeSecondary}/>
+        <S.Icon size={props.size} colorTheme={props.colorThemeSecondary}/>
       )}
-    </StyledRoot>
+    </S.Root>
   )
 }
-
-const StyledRoot = styled.span.attrs<any>({})`
-  display: inline-flex;
-  align-items: center;
-  font-size: ${props => props.size || 14}px;
-  font-weight: ${props => props.weight || 300};
-`
-
-const StyledValue = styled.span.attrs<any>({})`
-  color: ${props => props.colorTheme ? props.theme[props.colorTheme] : props.theme.colorText}
-`
-
-const StyledIcon = RubleSign.extend.attrs<any>({})`
-  margin-left: 3px;
-  color: ${props => props.colorTheme ? props.theme[props.colorTheme] : props.theme.colorText}
-  height: ${props => (props.size || 14) * 0.7}px;
-  display: inline-block;
-`
 
 export default Price

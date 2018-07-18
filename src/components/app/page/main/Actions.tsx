@@ -1,9 +1,9 @@
 import * as React from 'react'
-import styled from 'config/theme'
 import Button from 'components/shared/ui/Button'
 import { File as IconList } from 'styled-icons/feather/File'
 import { FileText as IconXls } from 'styled-icons/feather/FileText'
 import { navigate } from '@reach/router'
+import S from './Actions.styled'
 
 interface Props {
   style?: React.CSSProperties
@@ -22,16 +22,11 @@ const download = (filename: string, content: string) => {
 const downloadExample = () => download('example.csv', 'example')
 
 const PageMainActions: React.StatelessComponent<Props> = props => (
-  <StyledRoot style={props.style}>
+  <S.Root style={props.style}>
     <Button onClick={() => navigate('/new-payment')}>Новый платеж</Button>
     <Button onClick={() => downloadExample()} simple icon={<IconList size={25}/>}>Выставить счет</Button>
     <Button onClick={() => downloadExample()} simple icon={<IconXls size={25}/>}>Выписка по счету</Button>
-  </StyledRoot>
+  </S.Root>
 )
-
-const StyledRoot = styled.div`
-  display: flex;
-  & > * + * { margin-left: 20px }
-`
 
 export default PageMainActions

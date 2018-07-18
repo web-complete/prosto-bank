@@ -1,6 +1,6 @@
 import * as React from 'react'
-import styled from 'config/theme'
 import { IMaskMixin } from 'react-imask'
+import S from './Input.styled'
 
 interface Props {
   label?: string,
@@ -75,8 +75,8 @@ class Input extends React.PureComponent<Props, State>{
     const labelUp = value || isFocused || (props.mask && props.lazy === false)
 
     return (
-      <StyledRoot className={isFocused ? 'active' : ''} width={width}>
-        {label && <StyledLabel className={labelUp ? 'up' : ''}>{label}</StyledLabel>}
+      <S.Root className={isFocused ? 'active' : ''} width={width}>
+        {label && <S.Label className={labelUp ? 'up' : ''}>{label}</S.Label>}
         <MaskedStyledInput
           { ...props }
           innerRef={(ref: any) => this.input = ref}
@@ -87,60 +87,13 @@ class Input extends React.PureComponent<Props, State>{
           value={value}
           disabled={disabled}
         />
-      </StyledRoot>
+      </S.Root>
     )
   }
 }
 
-const StyledRoot = styled.div.attrs<any>({})`
-  display: inline-block;
-  width: ${props => props.width || '100%'};
-  position: relative;
-  margin-top: 15px;
-  border-bottom: 1px solid ${props => props.theme.colorGray};
-  &::after {
-    content: '';
-    position: absolute;
-    display: block;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -2px;
-    height: 2px;
-    width: 0;
-    background: ${props => props.theme.colorPrimary};
-    z-index: 1;
-    transition: all 0.2s;
-  }
-  &.active::after {
-    width: 100%;
-  }
-`
-const StyledLabel = styled.div`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0;
-  font-size: 14px;
-  color: ${props => props.theme.colorGray};
-  transition: all 0.2s;
-  z-index: 1;
-  line-height: 1;
-  &.up {
-    top: -10px;
-    transform: none;
-    font-size: 12px;
-  }
-`
-const StyledInput = styled.input.attrs({ type: 'text' })`
-  display: block;
-  width: 100%;
-  border: none;
-  height: 40px;
-  line-height: 40px;
-  font-size: 14px;
-`
 const MaskedStyledInput = IMaskMixin(({ inputRef, ...props }: any) => {
-  return <StyledInput {...props} innerRef={inputRef} />
+  return <S.Input {...props} innerRef={inputRef} />
 })
 
 export default Input
