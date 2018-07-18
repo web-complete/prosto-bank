@@ -12,7 +12,11 @@ interface Props {
 const PageMainHistoryRecord: React.StatelessComponent<Props> = ({ type, text, value }) => (
   <S.Root>
     <S.IconCell>
-      {If(type === 'in', <S.IconIn/>, <S.IconOut/>)}
+      {If(
+        type === 'in',
+        <S.IconIn/>,
+        <S.IconOut/>,
+      )}
     </S.IconCell>
     <S.TextCell>
       {text}
