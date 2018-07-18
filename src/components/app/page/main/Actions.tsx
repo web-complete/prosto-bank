@@ -25,7 +25,7 @@ const PageMainActions: React.StatelessComponent<Props> = props => (
   <StyledRoot style={props.style}>
     <Button onClick={() => navigate('/new-payment')}>Новый платеж</Button>
     <Button onClick={() => downloadExample()} simple icon={<IconList size={25}/>}>Выставить счет</Button>
-    <Button onClick={() => downloadExample()} simple icon={<IconXls size={25}/>}>Выписка посчету</Button>
+    <Button onClick={() => downloadExample()} simple icon={<IconXls size={25}/>}>Выписка по счету</Button>
   </StyledRoot>
 )
 

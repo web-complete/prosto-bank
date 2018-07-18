@@ -9,6 +9,10 @@ interface Props {
 }
 
 class PageNewPayment extends React.PureComponent<Props>{
+  componentDidMount() {
+    requestAnimationFrame(() => window.scrollTo(0, 0))
+  }
+
   render() {
     return (
       <div>

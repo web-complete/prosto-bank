@@ -20,6 +20,7 @@ import InputWrapper1 from './components/InputWrapper1'
 import InputWrapper2 from './components/InputWrapper2'
 import SelectWrapper1 from './components/SelectWrapper1'
 import DateWrapper1 from './components/DateWrapper1'
+import RadioWrapper1 from './components/RadioWrapper1'
 import NotificationIcon from 'react-icons/lib/md/notifications-none'
 
 storiesOf('Logo', module)
@@ -135,6 +136,7 @@ storiesOf('Forms', module)
   .add('select', withNotes(``)(() => (<SelectWrapper1/>)))
   .add('select disabled', withNotes(``)(() => (<SelectWrapper1/>)))
   .add('date', withNotes(``)(() => (<DateWrapper1/>)))
+  .add('radio', withNotes(``)(() => (<RadioWrapper1/>)))
 
 storiesOf('Other', module)
   .addDecorator(story => (<WithThemeProvider>{story()}</WithThemeProvider>))

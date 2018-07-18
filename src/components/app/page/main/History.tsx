@@ -4,7 +4,7 @@ import memoize from 'memoize-one'
 import { IState } from 'store'
 import styled from 'config/theme'
 import Heading2 from 'components/shared/ui/Heading2'
-import Button from 'components/shared/ui/Button'
+import Radio from 'components/shared/ui/Radio'
 import { List, ListItem, ListTitle } from 'components/shared/ui/List'
 import PageMainHistoryRecord from './history/Record'
 
@@ -12,7 +12,7 @@ interface Props {
   items: IAccountItem[],
   style?: React.CSSProperties,
 }
-type TFilter = { type: null | 'in' | 'out' }
+type TFilter = { type: '' | 'in' | 'out' }
 interface State {
   filter: TFilter
 }
@@ -20,7 +20,7 @@ interface State {
 class PageMainHistory extends React.PureComponent<Props, State> {
   state: State = {
     filter: {
-      type: null,
+      type: '',
     },
   }
 
@@ -30,7 +30,7 @@ class PageMainHistory extends React.PureComponent<Props, State> {
     },
   )
 
-  filterType = (type: null | 'in' | 'out') => this.setState({ filter: { type } })
+  filterType = (type: '' | 'in' | 'out') => this.setState({ filter: { type } })
 
   render() {
     const { filter } = this.state
@@ -52,9 +52,9 @@ class PageMainHistory extends React.PureComponent<Props, State> {
           </StyledListContent>
           <StyledListFilter>
             <ListTitle style={{ marginBottom: '10px' }}>Тип операции</ListTitle>
-            <Button onClick={() => this.filterType(null)} rounded active={filter.type === null}>Все платежи</Button>
-            <Button onClick={() => this.filterType('in')} rounded active={filter.type === 'in'}>Пополнение</Button>
-            <Button onClick={() => this.filterType('out')} rounded active={filter.type === 'out'}>Списание</Button>
+            <Radio onChange={this.filterType} option={''} value={filter.type}>Все платежи</Radio>
+            <Radio onChange={this.filterType} option={'in'} value={filter.type}>Пополнение</Radio>
+            <Radio onChange={this.filterType} option={'out'} value={filter.type}>Списание</Radio>
           </StyledListFilter>
         </StyledListWrapper>
       </StyledRoot>

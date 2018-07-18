@@ -119,7 +119,7 @@ const StyledLabel = styled.div`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 10px;
+  left: 0;
   font-size: 14px;
   color: ${props => props.theme.colorGray};
   transition: all 0.2s;
@@ -137,7 +137,6 @@ const StyledInput = styled.input.attrs({ type: 'text' })`
   border: none;
   height: 40px;
   line-height: 40px;
-  padding: 0 10px;
   font-size: 14px;
 `
 const MaskedStyledInput = IMaskMixin(({ inputRef, ...props }: any) => {

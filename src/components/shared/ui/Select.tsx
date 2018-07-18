@@ -66,7 +66,6 @@ const StyledRoot = styled.div.attrs<any>({})`
   margin-top: 15px;
   height: 40px;
   line-height: 40px;
-  padding: 0 10px;
   border-bottom: 1px solid ${props => props.theme.colorGray};
   &::after {
     content: '';
@@ -89,7 +88,7 @@ const StyledLabel = styled.div`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 10px;
+  left: 0;
   font-size: 14px;
   color: ${props => props.theme.colorGray};
   transition: all 0.2s;

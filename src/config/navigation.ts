@@ -1,7 +1,6 @@
 import PageMain from 'components/app/page/Main'
 import PageNewPayment from 'components/app/page/NewPayment'
 import PageProcessPayments from 'components/app/page/ProcessPayments'
-import PageSummary from 'components/app/page/Summary'
 
 const nav: INavItem[] = [
   {
@@ -22,12 +21,6 @@ const nav: INavItem[] = [
     title: 'Платежи в работе',
     path: '/process-payments',
     component: PageProcessPayments,
-  },
-  {
-    code: 'summary',
-    title: 'Выписка',
-    path: '/summary',
-    component: PageSummary,
   },
 ]
 

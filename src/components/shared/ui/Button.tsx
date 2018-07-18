@@ -10,7 +10,9 @@ interface Props {
   dashed?: boolean,
   active?: boolean,
   simple?: boolean,
-  icon?: React.ReactElement<any>
+  icon?: React.ReactElement<any>,
+  className?: string,
+  styles?: any,
 }
 
 const Button: React.StatelessComponent<Props> = props => (
@@ -23,6 +25,8 @@ const Button: React.StatelessComponent<Props> = props => (
     active={props.active}
     simple={props.simple}
     hasIcon={!!(props.simple && props.icon)}
+    className={props.className}
+    styles={props.styles}
   >
     {props.simple && props.icon && (<StyledIcon>{props.icon}</StyledIcon>)}
     <StyledText fontSize={props.fontSize} simple={props.simple}>{props.children}</StyledText>
