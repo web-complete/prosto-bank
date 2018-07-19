@@ -1,23 +1,25 @@
 import { Form } from '@mvkasatkin/forms'
 
+const errorRequired = 'Обязательное поле'
+
 class LegalFormModel extends Form {
   constructor() {
     super([
-      ['senderId', 'required'],
-      ['senderKpp', 'required'],
-      ['receiverName', 'required'],
-      ['receiverInn', 'required'],
-      ['receiverKpp', 'required'],
-      ['receiverAccount', 'required'],
-      ['receiverBik', 'required'],
-      ['value', 'required'],
-      ['description', 'required'],
-      ['nds', 'required'],
-      ['urgency', 'required'],
+      ['senderId', 'required', {}, errorRequired],
+      ['senderKpp', 'required', {}, errorRequired],
+      ['receiverName', 'required', {}, errorRequired],
+      ['receiverInn', 'required', {}, errorRequired],
+      ['receiverKpp', 'required', {}, errorRequired],
+      ['receiverAccount', 'required', {}, errorRequired],
+      ['receiverBik', 'required', {}, errorRequired],
+      ['value', 'required', {}, errorRequired],
+      ['description', 'required', {}, errorRequired],
+      ['nds', 'required', {}, errorRequired],
+      ['urgency', 'required', {}, errorRequired],
       ['notEarlier'],
-      ['uin', 'required'],
+      ['uin', 'required', {}, errorRequired],
       ['notifyPhone'],
-      ['notifyEmail', 'email'],
+      ['notifyEmail', 'email', {}, 'Укажите корректный E-Mail'],
     ])
   }
 }

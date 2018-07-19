@@ -40,10 +40,14 @@ interface State {
 }
 
 class Input extends React.PureComponent<Props, State>{
+  input: HTMLInputElement | null
   state: State = {
     isFocused: false,
   }
 
+  focus = () => {
+    if (this.input) this.input.focus()
+  }
   onFocus = () => {
     this.setState({ isFocused: true })
     this.props.onFocus && this.props.onFocus()
@@ -74,9 +78,10 @@ class Input extends React.PureComponent<Props, State>{
 
     return (
       <S.Root className={classes.join(' ')} width={width}>
-        {label && <S.Label className={labelUp ? 'up' : ''}>{label}</S.Label>}
+        {label && <S.Label className={labelUp ? 'up' : ''} onClick={this.focus}>{label}</S.Label>}
         <MaskedStyledInput
           { ...props }
+          inpRef={(ref: HTMLInputElement) => this.input = ref}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
           onChange={this.onChange}
@@ -91,7 +96,7 @@ class Input extends React.PureComponent<Props, State>{
 }
 
 const MaskedStyledInput = IMaskMixin(({ inputRef, ...props }: any) => {
-  return <S.Input {...props} innerRef={inputRef} />
+  return <S.Input {...props} innerRef={(ref: any) => { inputRef(ref); props.inpRef(ref) }} />
 })
 
 export default Input

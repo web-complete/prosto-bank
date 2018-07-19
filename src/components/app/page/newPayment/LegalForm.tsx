@@ -56,9 +56,9 @@ class PageNewPaymentLegalForm extends React.PureComponent<Props, State>{
 
   submit = () => {
     form.setData(this.state.formData)
-    form.validate()
-      ? alert('Validation OK')
-      : alert('Validation FAIL')
+    if (form.validate()) {
+      alert('Validation OK')
+    }
     this.setState({ formErrors: form.getFirstErrors() })
   }
 
