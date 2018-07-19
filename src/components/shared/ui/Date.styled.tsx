@@ -28,6 +28,16 @@ S.Root = styled.div.attrs<any>({})`
   &.active::after {
     width: 100%;
   }
+  &.active::after {
+    width: 100%;
+  }
+  &.error {
+    border-bottom: 1px solid ${p => p.theme.colorAlert};
+    margin-bottom: 15px;
+  }
+  &.error.active::after {
+    background: ${p => p.theme.colorAlert};
+  }
 `
 S.Label = styled.div`
   position: absolute;
@@ -56,13 +66,24 @@ S.Icon = Calendar.extend`
 S.DateWrapper = styled.div`
   display: none;
   position: absolute;
-  top: 100%;
+  top: calc(100% + 5px);
   right: 0;
   width: 245px;
   line-height: 1.2;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  z-index: 100;
   &.active {
     display: block;
   }
+`
+S.Error = styled.div`
+  position: absolute;
+  top: calc(100% + 5px);
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1;
+  color: ${p => p.theme.colorAlert};
 `
 
 export default S

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Heading1 from 'components/shared/ui/Heading1'
+import { Heading1 } from 'components/shared/ui/Heading'
 import Tabs from 'components/shared/ui/Tabs/Tabs'
 import Tab from 'components/shared/ui/Tabs/Tab'
 import S from './ProcessPayments.styled'

@@ -11,6 +11,7 @@ const {
 } = styledComponents as Themed
 
 export interface ITheme {
+  spacing: number,
   colorText: string,
   colorPrimary: string,
   colorPrimaryHover: string,
@@ -23,6 +24,7 @@ export interface ITheme {
 }
 
 const theme: ITheme = {
+  spacing: 8,
   colorText: '#252A30',
   colorPrimary: '#252A30',
   colorPrimaryHover: '#2a2f34',

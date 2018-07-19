@@ -33,6 +33,10 @@
     reflect-metadata "^0.1.12"
     tslib "^1.8.1"
 
+"@mvkasatkin/forms@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@mvkasatkin/forms/-/forms-0.0.1.tgz#358d4980f3dd518c8d94f09a9ddd21b4d18b5f97"
+
 "@reach/router@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.1.1.tgz#24a5b20f1cc9e55e2cbcdc454fb82c94db479a81"

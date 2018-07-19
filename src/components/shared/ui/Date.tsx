@@ -5,10 +5,12 @@ import S from './Date.styled'
 
 interface Props {
   label?: string,
-  value: Date | null,
+  value: string,
+  format: string,
+  error?: string,
   disabled?: boolean,
   width?: string,
-  onChange?: (value: Date) => void,
+  onChange?: (value: string) => void,
 }
 interface State {
   isActive: boolean,
@@ -21,21 +23,24 @@ class Select extends React.PureComponent<Props, State>{
   toggle = () => this.setState(state => ({ isActive: !state.isActive }))
   close = () => this.setState({ isActive: false })
   select = (day: Date) => {
-    this.props.onChange && this.props.onChange(day)
+    const value = moment(day).format(this.props.format)
+    this.props.onChange && this.props.onChange(value)
     this.close()
   }
 
   render() {
     const { isActive } = this.state
-    const { label, value, width } = this.props
-    const selectedDays = value ? [value] : []
-    const dateString = value ? moment(value).format('DD.MM.YYYY') : ''
+    const { label, value, format, error, width } = this.props
+    const selectedDays = value ? [moment(value, format).toDate()] : []
+    const classes = []
+    if (value) classes.push('active')
+    if (error) classes.push('error')
 
     return (
-      <S.Root className={value ? 'active' : ''}
+      <S.Root className={classes.join(' ')}
                   width={width}
       >
-        {dateString}
+        {value}
         {label && <S.Label className={value ? 'up' : ''}>{label}</S.Label>}
         <S.Icon onClick={this.toggle}/>
         <S.DateWrapper className={isActive ? 'active' : ''}>

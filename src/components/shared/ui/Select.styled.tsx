@@ -26,6 +26,13 @@ S.Root = styled.div.attrs<any>({})`
   &.active::after {
     width: 100%;
   }
+  &.error {
+    border-bottom: 1px solid ${p => p.theme.colorAlert};
+    margin-bottom: 15px;
+  }
+  &.error.active::after {
+    background: ${p => p.theme.colorAlert};
+  }
 `
 S.Label = styled.div`
   position: absolute;
@@ -66,6 +73,7 @@ S.Dropdown = styled.div`
   visibility: hidden;
   border: 1px solid ${props => props.theme.colorGray};
   transition: all 0.2s;
+  z-index: 10;
   &.active {
     height: auto;
     max-height: 400px;
@@ -76,6 +84,7 @@ S.Dropdown = styled.div`
 S.Option = styled.div`
   cursor: pointer;
   padding: 10px;
+  background: #ffffff;
   transition: all 0.1s;
   &:hover, &.selected {
     background: ${props => props.theme.colorGrayLight};
@@ -83,6 +92,14 @@ S.Option = styled.div`
   &:not(:last-child) {
     border-bottom: 1px solid ${props => props.theme.colorGrayLight};
   }
+`
+S.Error = styled.div`
+  position: absolute;
+  top: calc(100% + 5px);
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1;
+  color: ${p => p.theme.colorAlert};
 `
 
 export default S

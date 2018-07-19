@@ -9,6 +9,7 @@ interface Props {
   label?: string,
   options: TOption[],
   value: string,
+  error?: string,
   disabled?: boolean,
   width?: string,
   onChange?: (value: string) => void,
@@ -26,12 +27,15 @@ class Select extends React.PureComponent<Props, State>{
 
   render() {
     const { isActive } = this.state
-    const { label, value, options, width } = this.props
+    const { label, value, error, options, width } = this.props
     const selectedOption = options.find(o => o.value === value)
     const selectedLabel = selectedOption ? selectedOption.label : ''
+    const classes = []
+    if (selectedLabel) classes.push('active')
+    if (error) classes.push('error')
 
     return (
-      <S.Root className={selectedLabel ? 'active' : ''}
+      <S.Root className={classes.join(' ')}
                   width={width}
                   onClick={this.toggle}
       >
@@ -41,6 +45,7 @@ class Select extends React.PureComponent<Props, State>{
         <S.Dropdown className={isActive ? 'active' : ''}>
           {this.renderOptions()}
         </S.Dropdown>
+        {error ? <S.Error>{error}</S.Error> : ''}
       </S.Root>
     )
   }

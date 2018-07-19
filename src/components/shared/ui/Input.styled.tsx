@@ -3,10 +3,10 @@ import styled from 'config/theme'
 const S: any = {}
 S.Root = styled.div.attrs<any>({})`
   display: inline-block;
-  width: ${props => props.width || '100%'};
+  width: ${p => p.width || '100%'};
   position: relative;
   margin-top: 15px;
-  border-bottom: 1px solid ${props => props.theme.colorGray};
+  border-bottom: 1px solid ${p => p.theme.colorGray};
   &::after {
     content: '';
     position: absolute;
@@ -16,12 +16,19 @@ S.Root = styled.div.attrs<any>({})`
     bottom: -2px;
     height: 2px;
     width: 0;
-    background: ${props => props.theme.colorPrimary};
+    background: ${p => p.theme.colorPrimary};
     z-index: 1;
     transition: all 0.2s;
   }
   &.active::after {
     width: 100%;
+  }
+  &.error {
+    border-bottom: 1px solid ${p => p.theme.colorAlert};
+    margin-bottom: 15px;
+  }
+  &.error.active::after {
+    background: ${p => p.theme.colorAlert};
   }
 `
 S.Label = styled.div`
@@ -30,7 +37,7 @@ S.Label = styled.div`
   transform: translateY(-50%);
   left: 0;
   font-size: 14px;
-  color: ${props => props.theme.colorGray};
+  color: ${p => p.theme.colorGray};
   transition: all 0.2s;
   z-index: 1;
   line-height: 1;
@@ -47,6 +54,14 @@ S.Input = styled.input.attrs({ type: 'text' })`
   height: 40px;
   line-height: 40px;
   font-size: 14px;
+`
+S.Error = styled.div`
+  position: absolute;
+  top: calc(100% + 5px);
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1;
+  color: ${p => p.theme.colorAlert};
 `
 
 export default S

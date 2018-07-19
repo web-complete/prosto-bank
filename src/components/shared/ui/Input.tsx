@@ -5,6 +5,7 @@ import S from './Input.styled'
 interface Props {
   label?: string,
   value: string,
+  error?: string,
   disabled?: boolean,
   width?: string,
   onInput?: (value: string) => void,
@@ -35,14 +36,11 @@ interface Props {
   onComplete?: (value: string) => void,
 }
 interface State {
-  lastChange: string,
   isFocused: boolean,
 }
 
 class Input extends React.PureComponent<Props, State>{
-  input: HTMLInputElement | null = null
   state: State = {
-    lastChange: this.props.value,
     isFocused: false,
   }
 
@@ -50,36 +48,35 @@ class Input extends React.PureComponent<Props, State>{
     this.setState({ isFocused: true })
     this.props.onFocus && this.props.onFocus()
   }
-  onBlur = () => {
+  onBlur = (e: any) => {
     this.setState({ isFocused: false })
     this.props.onBlur && this.props.onBlur()
-    this.onChanged()
+    this.onChanged(e.target.value)
   }
   onChange = (e: any) => {
     this.props.onInput && this.props.onInput(e.target.value)
   }
-  onChanged = () => {
-    if (this.input && this.input.value !== this.state.lastChange) {
-      this.setState({ lastChange: this.input.value })
-      this.props.onChange && this.props.onChange(this.input.value)
-    }
+  onChanged = (value: string) => {
+    this.props.onChange && this.props.onChange(value)
   }
-  onKeyUp = (e: any) => { if (e.keyCode === 13) this.onChanged() }
+  onKeyUp = (e: any) => { if (e.keyCode === 13) this.onChanged(e.target.value) }
 
   render() {
     const { isFocused } = this.state
-    const { label, value, disabled, width } = this.props
+    const { label, value, error, disabled, width } = this.props
     const props = { ...this.props }
     delete props.onChange
     delete props.onInput
     const labelUp = value || isFocused || (props.mask && props.lazy === false)
+    const classes = []
+    if (isFocused) classes.push('active')
+    if (error) classes.push('error')
 
     return (
-      <S.Root className={isFocused ? 'active' : ''} width={width}>
+      <S.Root className={classes.join(' ')} width={width}>
         {label && <S.Label className={labelUp ? 'up' : ''}>{label}</S.Label>}
         <MaskedStyledInput
           { ...props }
-          innerRef={(ref: any) => this.input = ref}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
           onChange={this.onChange}
@@ -87,6 +84,7 @@ class Input extends React.PureComponent<Props, State>{
           value={value}
           disabled={disabled}
         />
+        {error ? <S.Error>{error}</S.Error> : ''}
       </S.Root>
     )
   }

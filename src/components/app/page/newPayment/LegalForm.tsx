@@ -1,98 +1,220 @@
 import * as React from 'react'
-import Heading3 from 'components/shared/ui/Heading3'
+import I from 'immutant'
+import { If } from 'classes/Helper'
+import { Box, FlexBox, FlexItem } from 'components/shared/ui/Layout'
+import { Heading3 } from 'components/shared/ui/Heading'
 import Input from 'components/shared/ui/Input'
 import Select from 'components/shared/ui/Select'
 import Date from 'components/shared/ui/Date'
-import S from './LegalForm.styled'
+import LegalFormModel from './LegalFormModel'
+import S from './common.styled'
+
+const form = new LegalFormModel()
+const formData = {
+  senderId: '' as string,
+  senderKpp: '' as string,
+  receiverName: '' as string,
+  receiverInn: '' as string,
+  receiverKpp: '' as string,
+  receiverAccount: '' as string,
+  receiverBik: '' as string,
+  value: '' as string,
+  description: '' as string,
+  nds: '0' as string,
+  urgency: '0' as string,
+  notEarlier: '' as string,
+  uin: '' as string,
+  notifyPhone: '' as string,
+  notifyEmail: '' as string,
+}
 
 interface Props {
 }
+interface State {
+  formData: typeof formData,
+  formErrors: {[key: string]: string},
+}
 
-class PageNewPaymentLegalForm extends React.PureComponent<Props>{
+class PageNewPaymentLegalForm extends React.PureComponent<Props, State>{
+  state: State = {
+    formData: { ...formData },
+    formErrors: {},
+  }
+
+  field = (field: keyof typeof formData, method = 'onChange') => ({
+    value: this.state.formData[field],
+    error: this.state.formErrors[field] || '',
+    [method]: (value: any) => this.setState(state => {
+      return I(state)
+        .delete(['formErrors', field])
+        .set(value, ['formData', field])
+        .result
+    }),
+  })
+
+  reset = () => this.setState({ formData: { ...formData } })
+
+  submit = () => {
+    form.setData(this.state.formData)
+    form.validate()
+      ? alert('Validation OK')
+      : alert('Validation FAIL')
+    this.setState({ formErrors: form.getFirstErrors() })
+  }
+
   render() {
-    const org = [{ label: 'ООО "Веб Комплит"', value: '1' }]
+    const senderOpt = [{ label: 'ООО "Веб Комплит"', value: '1' }]
+    const isUrgent = this.state.formData.urgency !== '0'
+
     return (
       <S.Root>
         <Heading3>Отправитель</Heading3>
-        <S.Block60>
-          <Select label={'Организация'} options={org} value={'1'} />
-        </S.Block60>
-        <S.Block30>
+
+        <Box width={'60%'} mb={3}>
+          <Select
+            label={'Организация'}
+            options={senderOpt}
+            {...this.field('senderId')}
+          />
+        </Box>
+
+        <Box width={'30%'} mb={3}>
           <S.Label>Счет списания</S.Label>
           <S.AccountPrice value={667013.57} />
           <S.TextSm>50701 310 5 2315 0000815</S.TextSm>
-        </S.Block30>
-        <S.Block30>
-          <Input label={'КПП'} value={'543301001'} />
-        </S.Block30>
+        </Box>
 
-        <Heading3 style={{ marginTop: '50px' }}>Получатель</Heading3>
-        <S.Block100>
-          <Input label={'Наименование'} value={''} />
-        </S.Block100>
-        <S.Block60Flex>
-          <S.BlockHalf>
-            <Input label={'ИНН'} value={''} />
-          </S.BlockHalf>
-          <S.BlockHalf>
-            <Input label={'КПП'} value={''} />
-          </S.BlockHalf>
-        </S.Block60Flex>
-        <S.Block60>
-          <Input label={'Номер счета'} value={''} />
-        </S.Block60>
-        <S.Block30>
-          <Input label={'БИК банка'} value={''} />
-        </S.Block30>
+        <Box width={'30%'} mb={3}>
+          <Input
+            label={'КПП'}
+            mask={'#### ## ###'}
+            definitions={{ '#': Number }}
+            {...this.field('senderKpp')}
+          />
+        </Box>
 
-        <Heading3 style={{ marginTop: '50px' }}>Сколько и когда</Heading3>
-        <S.Block60Flex>
-          <Input label={'Сумма'} value={''} width={'calc(50% - 10px)'} />
+        <Heading3 mt={7}>Получатель</Heading3>
+
+        <Box mb={3}>
+          <Input
+            label={'Наименование'}
+            {...this.field('receiverName')}
+          />
+        </Box>
+
+        <FlexBox width={'60%'} mb={3} justifySpace>
+          <FlexItem size1of2 gap={1}>
+            <Input
+              label={'ИНН'}
+              mask={'#### ##### #'}
+              definitions={{ '#': Number }}
+              {...this.field('receiverInn')}
+            />
+          </FlexItem>
+          <FlexItem size1of2 gap={1}>
+            <Input
+              label={'КПП'}
+              mask={'#### ## ###'}
+              definitions={{ '#': Number }}
+              {...this.field('receiverKpp')}
+            />
+          </FlexItem>
+        </FlexBox>
+
+        <Box width={'30%'} mb={3}>
+          <Input
+            label={'Номер счета'}
+            mask={'### ## ### # #### #######'}
+            definitions={{ '#': Number }}
+            {...this.field('receiverAccount')}
+          />
+        </Box>
+
+        <Box width={'30%'} mb={3}>
+          <Input
+            label={'БИК банка'}
+            mask={'## ## ## ###'}
+            definitions={{ '#': Number }}
+            {...this.field('receiverBik')}
+          />
+        </Box>
+
+        <Heading3 mt={7}>Сколько и когда</Heading3>
+
+        <FlexBox width={'60%'} mb={3} justifySpace>
+          <Input
+            width={'calc(50% - 10px)'}
+            label={'Сумма'}
+            {...this.field('value')}
+          />
           <div>
             <S.Label>Комиссия</S.Label>
             <S.AccountPrice value={16} />
             <S.TextSm>Внутри банка — бесплатно</S.TextSm>
           </div>
-        </S.Block60Flex>
-        <S.Block100>
-          <Input label={'Назначение'} value={''} />
+        </FlexBox>
+
+        <Box mb={3}>
+          <Input label={'Назначение'} {...this.field('description')} />
           <S.RadioBlock>
-            <S.Radio option={'0'} value={'0'}>НДС не облагается</S.Radio>
-            <S.Radio option={'+10'} value={'0'}>Плюс 10% НДС</S.Radio>
-            <S.Radio option={'-10'} value={'0'}>В том числе НДС 10%</S.Radio>
-            <S.Radio option={'+18'} value={'0'}>Плюс 18% НДС</S.Radio>
-            <S.Radio option={'-18'} value={'0'}>В том числе НДС 18%</S.Radio>
-            <S.Radio option={'agent'} value={'0'}>НДС исчисляется налоговым агентом</S.Radio>
+            <S.Radio option={'0'} {...this.field('nds')}>НДС не облагается</S.Radio>
+            <S.Radio option={'+10'} {...this.field('nds')}>Плюс 10% НДС</S.Radio>
+            <S.Radio option={'-10'} {...this.field('nds')}>В том числе НДС 10%</S.Radio>
+            <S.Radio option={'+18'} {...this.field('nds')}>Плюс 18% НДС</S.Radio>
+            <S.Radio option={'-18'} {...this.field('nds')}>В том числе НДС 18%</S.Radio>
+            <S.Radio option={'agent'} {...this.field('nds')}>НДС исчисляется налоговым агентом</S.Radio>
           </S.RadioBlock>
-        </S.Block100>
-        <S.Block60>
+        </Box>
+
+        <Box width={'60%'} mb={3}>
           <S.Label>Срочность</S.Label>
           <S.RadioBlock>
-            <S.Radio option={'0'} value={'0'}>Стандартно</S.Radio>
-            <S.Radio option={'1'} value={'0'}>Текущим днем</S.Radio>
-            <S.Radio option={'2'} value={'0'}>Срочно</S.Radio>
+            <S.Radio option={'0'} {...this.field('urgency')}>Стандартно</S.Radio>
+            <S.Radio option={'1'} {...this.field('urgency')}>Текущим днем</S.Radio>
+            <S.Radio option={'2'} {...this.field('urgency')}>Срочно</S.Radio>
           </S.RadioBlock>
-        </S.Block60>
-        <S.Block60>
-          <Date label={'Отправить не ранее'} value={null}/>
-        </S.Block60>
-        <S.Block60>
-          <Input label={'УИН/УИП платежа'} value={''} />
-        </S.Block60>
+        </Box>
 
-        <Heading3 style={{ marginTop: '50px' }}>Уведомления об исполнении платежа</Heading3>
-        <S.Block60Flex>
-          <S.BlockHalf>
-            <Input label={'Телефон'} value={''} />
-          </S.BlockHalf>
-          <S.BlockHalf>
-            <Input label={'E-Mail'} value={''} />
-          </S.BlockHalf>
-        </S.Block60Flex>
+        {If(!isUrgent, (
+          <Box width={'60%'} mb={3}>
+            <Date
+              label={'Отправить не ранее'}
+              format={'DD.MM.YYYY'}
+              {...this.field('notEarlier')}
+            />
+          </Box>
+        ))}
+
+        <Box width={'60%'} mb={3}>
+          <Input
+            label={'УИН/УИП платежа'}
+            mask={'##### ##### ##### #####'}
+            definitions={{ '#': Number }}
+            {...this.field('uin')}
+          />
+        </Box>
+
+        <Heading3 mt={7}>Уведомления об исполнении платежа</Heading3>
+
+        <FlexBox width={'60%'} mb={3} justifySpace>
+          <FlexItem size1of2 gap={1}>
+            <Input
+              label={'Телефон'}
+              mask={'+7 (000) 000-00-00'}
+              {...this.field('notifyPhone')}
+            />
+          </FlexItem>
+          <FlexItem size1of2 gap={1}>
+            <Input
+              label={'E-Mail'}
+              {...this.field('notifyEmail')}
+            />
+          </FlexItem>
+        </FlexBox>
 
         <S.Actions>
-          <S.Button>Подписать и отправить</S.Button>
-          <S.Button outlined>Сбросить</S.Button>
+          <S.Button onClick={this.submit}>Подписать и отправить</S.Button>
+          <S.Button outlined onClick={this.reset}>Сбросить</S.Button>
         </S.Actions>
       </S.Root>
     )
