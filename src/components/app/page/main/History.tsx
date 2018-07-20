@@ -1,7 +1,5 @@
 import * as React from 'react'
-import { connect } from 'react-redux'
 import memoize from 'memoize-one'
-import { IState } from 'store'
 import { Heading2 } from 'components/shared/ui/Heading'
 import Radio from 'components/shared/ui/Radio'
 import { List, ListItem, ListTitle } from 'components/shared/ui/List'
@@ -62,8 +60,4 @@ class PageMainHistory extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: IState, ownProps: { style?: React.CSSProperties }): Props => ({
-  items: state.account.items,
-  style: ownProps.style,
-})
-export default connect(mapStateToProps)(PageMainHistory)
+export default PageMainHistory

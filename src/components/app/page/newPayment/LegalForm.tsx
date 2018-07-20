@@ -1,11 +1,13 @@
 import * as React from 'react'
 import I from 'immutant'
 import { If } from 'classes/Helper'
+import { IStateAccount } from 'store/state'
 import { Box, FlexBox, FlexItem } from 'components/shared/ui/Layout'
 import { Heading3 } from 'components/shared/ui/Heading'
 import Input from 'components/shared/ui/Input'
 import Select from 'components/shared/ui/Select'
 import Date from 'components/shared/ui/Date'
+import Commission from './Commission'
 import LegalFormModel from './LegalFormModel'
 import S from './common.styled'
 
@@ -29,6 +31,7 @@ const formData = {
 }
 
 interface Props {
+  accounts: IStateAccount[]
 }
 interface State {
   formData: typeof formData,
@@ -63,7 +66,10 @@ class PageNewPaymentLegalForm extends React.PureComponent<Props, State>{
   }
 
   render() {
-    const senderOpt = [{ label: 'ООО "Веб Комплит"', value: '1' }]
+    const { accounts } = this.props
+    const senderOpt = accounts.map(account => ({ label: account.name, value: account.id }))
+    const selectedId = this.state.formData.senderId
+    const selectedAccount = selectedId ? accounts.find(a => a.id === selectedId) : null
     const isUrgent = this.state.formData.urgency !== '0'
 
     return (
@@ -78,11 +84,13 @@ class PageNewPaymentLegalForm extends React.PureComponent<Props, State>{
           />
         </Box>
 
-        <Box width={'30%'} mb={3}>
-          <S.Label>Счет списания</S.Label>
-          <S.AccountPrice value={667013.57} />
-          <S.TextSm>50701 310 5 2315 0000815</S.TextSm>
-        </Box>
+        {selectedAccount && (
+          <Box width={'30%'} mb={3}>
+            <S.Label>Счет списания</S.Label>
+            <S.AccountPrice value={selectedAccount.value} />
+            <S.TextSm>{selectedAccount.number}</S.TextSm>
+          </Box>
+        )}
 
         <Box width={'30%'} mb={3}>
           <Input
@@ -145,13 +153,11 @@ class PageNewPaymentLegalForm extends React.PureComponent<Props, State>{
           <Input
             width={'calc(50% - 10px)'}
             label={'Сумма'}
-            {...this.field('value')}
+            mask={Number}
+            max={100000000}
+            {...this.field('value', 'onInput')}
           />
-          <div>
-            <S.Label>Комиссия</S.Label>
-            <S.AccountPrice value={16} />
-            <S.TextSm>Внутри банка — бесплатно</S.TextSm>
-          </div>
+          <Commission value={this.state.formData.value}/>
         </FlexBox>
 
         <Box mb={3}>
