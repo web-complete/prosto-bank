@@ -1,6 +1,6 @@
 # Prosto-bank
 
-Пример React-интерфейса
+Пример React-интерфейса ([demo](http://bank.webcomplete.ru/))
 
 Особенности реализации:
 
